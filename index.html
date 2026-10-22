@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>LAJA — Vino de pizarra de Cañamero · D.O. Ribera del Guadiana</title>
+  <meta name="description" content="Bodega LAJA: Tempranillo, Garnacha y Pardina de viñas sobre pizarra a 620 metros en Cañamero (Cáceres). Compra de vino y visitas a la viña los sábados. Concepto de web interactiva 3D de Daniel Durán.">
+  <meta name="theme-color" content="#22252A">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://danielduranmoya-spec.github.io/laja-bodega/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Bodega LAJA">
+  <meta property="og:title" content="LAJA — Vino de pizarra de Cañamero">
+  <meta property="og:description" content="Una botella que se desgrana en las 600 uvas con las que se hizo. Vinos de pizarra a 620 metros, en la D.O. Ribera del Guadiana.">
+  <meta property="og:url" content="https://danielduranmoya-spec.github.io/laja-bodega/">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://dl.polyhaven.org" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Syne:wght@700;800&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js');</script>
+
+  <!-- three.js para la escena 3D (versión fijada) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Winery",
+    "name": "Bodega LAJA",
+    "description": "Bodega de vinos de pizarra en Cañamero, D.O. Ribera del Guadiana (concepto de web, negocio ficticio).",
+    "url": "https://danielduranmoya-spec.github.io/laja-bodega/",
+    "telephone": "+34600000000",
+    "priceRange": "€€",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Camino de la Sierra, km 2",
+      "postalCode": "10136",
+      "addressLocality": "Cañamero",
+      "addressRegion": "Cáceres",
+      "addressCountry": "ES"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 39.3796, "longitude": -5.3869 },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"], "opens": "10:00", "closes": "14:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "14:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "17:00", "closes": "20:00" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6.5l5.5 5.5-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-prev" viewBox="0 0 24 24"><path d="M14.5 6L8.5 12l6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 6v12M6 12h12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4.5 19.5l1.2-3.6A7.5 7.5 0 1 1 8.4 18.6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 10.2h6M9 13.4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="10" r="2.4" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-laja" viewBox="0 0 32 32"><path d="M5 22.5L11 8.5l9.5-2.5 6.5 9-4 10.5-13 1.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.2 15.5l15.5-3M7 19.5l17.6-2.8M9 23.5l13.5-1.8" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity=".7"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- Capa de fondo del inicio: palabra gigante y anillos (debajo del 3D) -->
+  <div class="backdrop" aria-hidden="true" data-backdrop>
+    <div class="backdrop__light"></div>
+    <svg class="backdrop__rings" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
+      <circle cx="500" cy="500" r="210"/>
+      <circle cx="500" cy="500" r="300"/>
+      <circle class="backdrop__ring-dash" cx="500" cy="500" r="390"/>
+      <circle cx="500" cy="500" r="480"/>
+    </svg>
+    <p class="backdrop__word">LAJA</p>
+  </div>
+
+  <!-- Lienzo 3D fijo: la botella viaja por las secciones -->
+  <canvas id="escena" class="escena" aria-hidden="true"></canvas>
+
+  <header class="site-header" data-header>
+    <div class="concept-bar">
+      <div class="wrap concept-bar__inner">
+        <p><span class="concept-bar__tag">Concepto</span> Bodega ficticia<span class="concept-bar__long">: ejemplo de web interactiva 3D diseñada por Daniel Durán</span>.</p>
+        <a href="https://danielduranmoya-spec.github.io/#contacto">Quiero una web así <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <div class="wrap site-header__inner">
+      <a class="logo" href="#inicio" aria-label="Bodega LAJA, ir al inicio">
+        <svg class="logo__mark" aria-hidden="true"><use href="#i-laja"/></svg>
+        <span class="logo__word">LAJA</span>
+        <span class="logo__sub">Bodega · Cañamero</span>
+      </a>
+      <nav class="nav" aria-label="Principal" data-nav>
+        <a href="#bodega">Bodega</a>
+        <a href="#producto">Producto</a>
+        <a href="#vinos">Vinos</a>
+        <a href="#enoturismo">Enoturismo</a>
+        <a href="#visita">Visita</a>
+        <a class="btn btn--accent btn--small nav__cta" href="#enoturismo">Reservar visita</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-movil" data-menu-toggle>
+        <svg aria-hidden="true"><use href="#i-menu"/></svg>
+        <span class="sr-only">Abrir menú</span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="menu-movil" data-menu hidden>
+      <nav aria-label="Menú móvil">
+        <a href="#bodega"><span class="mono">01</span> Bodega</a>
+        <a href="#producto"><span class="mono">02</span> Producto</a>
+        <a href="#vinos"><span class="mono">03</span> Vinos</a>
+        <a href="#enoturismo"><span class="mono">04</span> Enoturismo</a>
+        <a href="#visita"><span class="mono">05</span> Visita</a>
+      </nav>
+      <a class="btn btn--accent" href="#enoturismo">Reservar visita</a>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- ===================== INICIO ===================== -->
+    <section class="hero" id="inicio" data-hero aria-labelledby="hero-title">
+      <div class="hero__stage" data-stage>
+        <div class="hero__anchor anchor" data-anchor="hero" data-yaw="-12" aria-hidden="true">
+          <svg class="bottle-svg" viewBox="0 0 120 400" data-fallback>
+            <path class="bottle-svg__glass" d="M42 0H78V9l-.6 6V84c0 8 2.6 13 6.6 18 9 10 20 18 24 29 1.6 4 2 8 2 12V392c0 5-3 8-8 8H18c-5 0-8-3-8-8V143c0-4 .4-8 2-12 4-11 15-19 24-29 4-5 6.6-10 6.6-18V15L42 9z"/>
+            <path class="bottle-svg__seal" d="M41 0h38v74H41z"/>
+            <path class="bottle-svg__label" d="M10.6 212h98.8v128H10.6z"/>
+            <text class="bottle-svg__brand" x="60" y="276" text-anchor="middle">LAJA</text>
+            <text class="bottle-svg__small" x="60" y="300" text-anchor="middle">CRIANZA 2021</text>
+            <text class="bottle-svg__small" x="60" y="326" text-anchor="middle">Nº 0417 / 2400</text>
+          </svg>
+        </div>
+
+        <div class="hero__copy" data-hero-intro>
+          <p class="eyebrow">D.O. Ribera del Guadiana<span class="hide-m">&nbsp;· Cañamero (Cáceres)</span></p>
+          <h1 class="hero__title" id="hero-title">Vino de pizarra, hecho a 620&nbsp;metros.</h1>
+          <p class="hero__lead">Tempranillo de cepas de 1968 que crecen sobre laja. 2.400&nbsp;botellas numeradas a mano.</p>
+        </div>
+
+        <ol class="chapters" aria-label="La botella de cerca">
+          <li class="chapter" data-ch="1">
+            <p class="chapter__num mono">01 / Corcho</p>
+            <h2 class="chapter__title">Corcho natural de la Sierra de San Pedro</h2>
+            <p>Tapón de 49&nbsp;mm de una sola pieza, de alcornoques a 90&nbsp;km de la bodega, marcado a fuego con la laja.</p>
+          </li>
+          <li class="chapter" data-ch="2">
+            <p class="chapter__num mono">02 / Cuello</p>
+            <h2 class="chapter__title">Cápsula de estaño y vidrio de 620&nbsp;g</h2>
+            <p>Vidrio bordelés con un 60&nbsp;% de vidrio reciclado y cápsula lacada en el granate de la casa.</p>
+          </li>
+          <li class="chapter" data-ch="3">
+            <p class="chapter__num mono">03 / Etiqueta</p>
+            <h2 class="chapter__title">Papel de algodón, numerado a mano</h2>
+            <p>Cada etiqueta lleva su número, de la 0001 a la 2400, escrito por quien embotella ese día.</p>
+          </li>
+        </ol>
+
+        <div class="hero__buy">
+          <p class="hero__buy-name mono">Crianza 2021 · 75 cl</p>
+          <p class="hero__price"><span class="tnum">34</span><span class="hero__price-cur">€</span></p>
+          <p class="hero__buy-note mono">IVA incluido · envío en 48 h</p>
+        </div>
+        <div class="hero__cta">
+          <a class="btn btn--accent btn--big" href="#vinos" data-buy="tinto">Comprar<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="hero__more" href="#vinos">Los tres vinos</a>
+        </div>
+
+        <div class="hero__progress" aria-hidden="true">
+          <ol class="ticks" data-ticks>
+            <li data-tick="1"><span class="mono">01</span> Corcho</li>
+            <li data-tick="2"><span class="mono">02</span> Cuello</li>
+            <li data-tick="3"><span class="mono">03</span> Etiqueta</li>
+          </ol>
+          <p class="hero__scroll mono"><span class="hero__scroll-line"></span>Desliza para verla de cerca</p>
+        </div>
+
+        <p class="hero__side mono" aria-hidden="true">Bodega LAJA — Cañamero, Cáceres — 39°22′ N · 5°23′ O</p>
+
+        <div class="loader" role="status" aria-live="polite" data-loader>
+          <span class="loader__bar"><span data-loader-bar></span></span>
+          <span class="loader__text mono" data-loader-text>Preparando la botella 3D…</span>
+          <button class="loader__retry" type="button" data-retry hidden>Reintentar</button>
+        </div>
+        <p class="quality mono" data-quality hidden></p>
+      </div>
+    </section>
+
+    <!-- ===================== BODEGA ===================== -->
+    <section class="section bodega" id="bodega" aria-labelledby="bodega-title">
+      <div class="wrap bodega__grid">
+        <div class="bodega__copy">
+          <p class="eyebrow reveal"><span class="mono">01</span> La bodega</p>
+          <h2 class="section-title reveal" id="bodega-title">Una laja de pizarra a 620&nbsp;metros.</h2>
+          <div class="bodega__anchor-mobile anchor anchor--mobile" data-anchor="bodega-m" data-yaw="35" aria-hidden="true"></div>
+          <p class="lead reveal">Cañamero está en el Geoparque Villuercas-Ibores-Jara. Aquí la tierra es pizarra partida en lajas: no guarda agua, obliga a la cepa a hundir la raíz y le da al vino un fondo mineral que no se consigue en el llano.</p>
+          <p class="reveal">Trabajamos once hectáreas en vaso, sin riego, repartidas en cuatro parcelas orientadas al norte. La más vieja, El Lanchar, se plantó en 1968 con Tempranillo de la zona y es la que llena la crianza.</p>
+          <dl class="stats">
+            <div class="stat reveal"><dt class="mono">Altitud</dt><dd><span class="tnum">620</span><span class="stat__u">m</span></dd></div>
+            <div class="stat reveal"><dt class="mono">Viñedo en vaso</dt><dd><span class="tnum">11</span><span class="stat__u">ha</span></dd></div>
+            <div class="stat reveal"><dt class="mono">Cepa más vieja</dt><dd><span class="tnum">1968</span></dd></div>
+            <div class="stat reveal"><dt class="mono">Rendimiento</dt><dd><span class="tnum">3.500</span><span class="stat__u">kg/ha</span></dd></div>
+          </dl>
+          <blockquote class="quote reveal">
+            <p>«En pizarra la cepa sufre lo justo. Da poca uva, pero cada racimo sabe a sitio.»</p>
+            <footer class="mono">Elena Barquero, enóloga (personaje de ejemplo)</footer>
+          </blockquote>
+        </div>
+        <div class="bodega__side">
+          <div class="bodega__anchor anchor" data-anchor="bodega" data-yaw="35" data-spin="1" aria-hidden="true"></div>
+          <p class="bodega__caption mono" aria-hidden="true">Crianza 2021 · 360°</p>
+        </div>
+      </div>
+      <div class="strata" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+    </section>
+
+    <!-- ===================== PRODUCTO ===================== -->
+    <section class="producto" id="producto" data-producto aria-labelledby="producto-title">
+      <div class="producto__stage">
+        <div class="producto__head">
+          <p class="eyebrow"><span class="mono">02</span> Producto</p>
+          <h2 class="section-title" id="producto-title">De la botella a la cepa.</h2>
+          <p class="producto__hint mono">Sigue bajando: la botella se desgrana</p>
+        </div>
+
+        <div class="producto__anchor anchor" data-anchor="producto" data-yaw="0" aria-hidden="true">
+          <svg class="grapes-svg" viewBox="0 0 240 300" data-fallback-grapes>
+            <g class="grapes-svg__stem"><path d="M120 6v34M120 22c10-8 22-10 34-6"/></g>
+            <g class="grapes-svg__berries">
+              <circle cx="96" cy="58" r="15"/><circle cx="124" cy="52" r="15"/><circle cx="152" cy="60" r="15"/><circle cx="74" cy="78" r="15"/><circle cx="170" cy="84" r="15"/>
+              <circle cx="104" cy="84" r="15"/><circle cx="136" cy="82" r="15"/><circle cx="88" cy="108" r="15"/><circle cx="120" cy="110" r="15"/><circle cx="152" cy="110" r="15"/>
+              <circle cx="102" cy="136" r="15"/><circle cx="136" cy="138" r="15"/><circle cx="84" cy="160" r="14"/><circle cx="118" cy="164" r="15"/><circle cx="150" cy="164" r="14"/>
+              <circle cx="102" cy="190" r="14"/><circle cx="134" cy="192" r="14"/><circle cx="118" cy="218" r="14"/><circle cx="104" cy="244" r="13"/><circle cx="130" cy="244" r="13"/><circle cx="118" cy="270" r="12"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="counter" aria-hidden="true">
+          <p><span class="counter__num tnum" data-count-g>0</span><span class="counter__unit">g de uva</span></p>
+          <p><span class="counter__num counter__num--small tnum" data-count-uvas>0</span><span class="counter__unit">uvas de Tempranillo</span></p>
+        </div>
+
+        <ol class="pasos">
+          <li class="paso" data-paso="1">
+            <p class="paso__num mono">1,2 kg</p>
+            <h3>La uva de una botella</h3>
+            <p>Unas 600 uvas de Tempranillo, cogidas a mano en cajas de 12&nbsp;kg para que lleguen enteras a la mesa de selección.</p>
+          </li>
+          <li class="paso" data-paso="2">
+            <p class="paso__num mono">04:00 h</p>
+            <h3>Vendimia de noche, a 14&nbsp;°C</h3>
+            <p>Empezamos de madrugada para que la uva entre fría en la bodega y no fermente antes de tiempo.</p>
+          </li>
+          <li class="paso" data-paso="3">
+            <p class="paso__num mono">14 meses</p>
+            <h3>Roble francés de 500 litros</h3>
+            <p>Barricas de segundo y tercer uso, para que mande la fruta y no la madera. Después, un año en botella antes de salir.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== VINOS ===================== -->
+    <section class="section vinos" id="vinos" aria-labelledby="vinos-title" data-vinos>
+      <div class="wrap vinos__grid">
+        <div class="vinos__side">
+          <div class="vinos__anchor anchor" data-anchor="vinos" data-yaw="-10" aria-hidden="true"></div>
+          <div class="vinos__arrows">
+            <button class="round-btn" type="button" data-vino-prev aria-label="Vino anterior"><svg aria-hidden="true"><use href="#i-prev"/></svg></button>
+            <p class="vinos__index mono" aria-hidden="true"><span class="tnum" data-vino-index>03</span> / 03</p>
+            <button class="round-btn" type="button" data-vino-next aria-label="Vino siguiente"><svg aria-hidden="true"><use href="#i-next"/></svg></button>
+          </div>
+        </div>
+
+        <div class="vinos__copy">
+          <p class="eyebrow reveal"><span class="mono">03</span> Vinos</p>
+          <h2 class="section-title reveal" id="vinos-title">Tres vinos, una pizarra.</h2>
+
+          <div class="tabs reveal" role="tablist" aria-label="Elige un vino">
+            <button class="tab" type="button" role="tab" id="tab-blanco" aria-controls="panel-vino" aria-selected="false" tabindex="-1" data-vino-tab="blanco">Blanco</button>
+            <button class="tab" type="button" role="tab" id="tab-rosado" aria-controls="panel-vino" aria-selected="false" tabindex="-1" data-vino-tab="rosado">Rosado</button>
+            <button class="tab" type="button" role="tab" id="tab-tinto" aria-controls="panel-vino" aria-selected="true" tabindex="0" data-vino-tab="tinto">Crianza</button>
+          </div>
+
+          <article class="wine" id="panel-vino" role="tabpanel" aria-labelledby="tab-tinto" tabindex="0" data-wine-panel>
+            <header class="wine__head">
+              <h3 class="wine__name" data-w="nombre">LAJA Crianza 2021</h3>
+              <p class="wine__price"><span class="tnum" data-w="precio">34</span> €<span class="wine__price-note mono">/ botella 75 cl</span></p>
+            </header>
+            <p class="wine__notes" data-w="notas">Mora, regaliz y grafito. Tanino fino y largo, con la frescura de la altura.</p>
+            <dl class="wine__data">
+              <div><dt class="mono">Uva</dt><dd data-w="uva">Tempranillo 100 %</dd></div>
+              <div><dt class="mono">Elaboración</dt><dd data-w="elaboracion">14 meses en roble francés</dd></div>
+              <div><dt class="mono">Alcohol</dt><dd class="tnum" data-w="alcohol">14,5 % vol.</dd></div>
+              <div><dt class="mono">Servir a</dt><dd class="tnum" data-w="temperatura">16–17 °C</dd></div>
+              <div><dt class="mono">Botellas</dt><dd class="tnum" data-w="botellas">2.400 numeradas</dd></div>
+              <div><dt class="mono">Con</dt><dd data-w="maridaje">Cordero, presa ibérica, Torta del Casar</dd></div>
+            </dl>
+
+            <div class="order">
+              <div class="qty" role="group" aria-label="Número de botellas">
+                <button class="qty__btn" type="button" data-qty="-1" aria-label="Quitar una botella"><svg aria-hidden="true"><use href="#i-minus"/></svg></button>
+                <output class="qty__value tnum" data-qty-value aria-live="polite">1</output>
+                <button class="qty__btn" type="button" data-qty="1" aria-label="Añadir una botella"><svg aria-hidden="true"><use href="#i-plus"/></svg></button>
+              </div>
+              <p class="order__total">Total <span class="tnum" data-order-total>40</span> € <span class="order__ship" data-order-envio>· envío 6 € incluido</span></p>
+              <a class="btn btn--accent" href="#" data-order><svg aria-hidden="true"><use href="#i-chat"/></svg>Pedir por WhatsApp</a>
+            </div>
+            <p class="order__note">Enviamos a la península en 48&nbsp;h. Portes gratis desde 6&nbsp;botellas; si no, 6&nbsp;€.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ENOTURISMO ===================== -->
+    <section class="section enoturismo" id="enoturismo" aria-labelledby="eno-title">
+      <div class="wrap eno__grid">
+        <div class="eno__copy">
+          <p class="eyebrow reveal"><span class="mono">04</span> Enoturismo</p>
+          <h2 class="section-title reveal" id="eno-title">Sábados en la viña.</h2>
+          <p class="lead reveal">Paseo por El Lanchar, la parcela de 1968, bajada a la nave de barricas y cata de los tres vinos con Torta del Casar y pan de Cañamero.</p>
+          <ul class="facts">
+            <li class="reveal"><span class="mono">Duración</span><span>2 horas</span></li>
+            <li class="reveal"><span class="mono">Precio</span><span><span class="tnum">25</span> € por persona</span></li>
+            <li class="reveal"><span class="mono">Grupos</span><span>De 2 a 12 personas</span></li>
+            <li class="reveal"><span class="mono">Calzado</span><span>Cómodo: el camino es de pizarra suelta</span></li>
+          </ul>
+        </div>
+
+        <form class="booking" novalidate data-booking aria-labelledby="booking-title">
+          <h3 class="booking__title" id="booking-title">Reserva tu visita</h3>
+
+          <fieldset class="field">
+            <legend>Sábado</legend>
+            <div class="chips" data-dates></div>
+            <p class="field__error" data-error="fecha" hidden>Elige un sábado.</p>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>Hora</legend>
+            <div class="chips chips--two">
+              <label class="chip"><input type="radio" name="hora" value="11:00"><span>11:00</span></label>
+              <label class="chip"><input type="radio" name="hora" value="18:00"><span>18:00</span></label>
+            </div>
+            <p class="field__error" data-error="hora" hidden>Elige la hora.</p>
+          </fieldset>
+
+          <div class="field field--row">
+            <span class="field__label" id="personas-label">Personas</span>
+            <div class="qty qty--light" role="group" aria-labelledby="personas-label">
+              <button class="qty__btn" type="button" data-personas="-1" aria-label="Una persona menos"><svg aria-hidden="true"><use href="#i-minus"/></svg></button>
+              <output class="qty__value tnum" data-personas-value aria-live="polite">2</output>
+              <button class="qty__btn" type="button" data-personas="1" aria-label="Una persona más"><svg aria-hidden="true"><use href="#i-plus"/></svg></button>
+            </div>
+            <p class="booking__sum"><span class="tnum" data-booking-total>50</span> €</p>
+          </div>
+
+          <div class="field">
+            <label for="b-nombre">Nombre</label>
+            <input id="b-nombre" name="nombre" type="text" autocomplete="name" required>
+            <p class="field__error" data-error="nombre" hidden>Escribe tu nombre.</p>
+          </div>
+          <div class="field">
+            <label for="b-tel">Teléfono</label>
+            <input id="b-tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required>
+            <p class="field__error" data-error="telefono" hidden>Escribe un teléfono de 9 cifras.</p>
+          </div>
+          <label class="check">
+            <input type="checkbox" name="privacidad" required>
+            <span>He leído la <a href="privacidad.html">política de privacidad</a>.</span>
+          </label>
+          <p class="field__error" data-error="privacidad" hidden>Necesitamos que aceptes la política de privacidad.</p>
+
+          <button class="btn btn--accent btn--block" type="submit"><svg aria-hidden="true"><use href="#i-chat"/></svg>Enviar reserva por WhatsApp</button>
+          <p class="booking__note">La visita queda reservada cuando te contestamos, normalmente en menos de dos horas.</p>
+          <p class="booking__ok" data-booking-ok hidden tabindex="-1"><svg aria-hidden="true"><use href="#i-check"/></svg><span data-booking-ok-text></span></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===================== VISITA ===================== -->
+    <section class="section visita" id="visita" aria-labelledby="visita-title">
+      <div class="wrap visita__grid">
+        <div class="visita__copy">
+          <p class="eyebrow reveal"><span class="mono">05</span> Visita</p>
+          <h2 class="section-title reveal" id="visita-title">Al final del camino de la sierra.</h2>
+          <p class="status reveal" data-status data-state="closed"><span class="status__dot"></span><span data-status-text>Consultando horario…</span></p>
+          <address class="address reveal">
+            <svg aria-hidden="true"><use href="#i-pin"/></svg>
+            <span>Camino de la Sierra, km 2<br>10136 Cañamero (Cáceres)<br><small class="mono">Dirección ficticia · a 2 h de Badajoz y 2 h 30 de Madrid</small></span>
+          </address>
+          <table class="hours reveal">
+            <caption class="mono">Tienda y visitas</caption>
+            <tbody>
+              <tr data-days="2,3,4,5"><th scope="row">Martes a viernes</th><td><span class="nowrap">10:00 – 14:00</span></td></tr>
+              <tr data-days="6"><th scope="row">Sábado</th><td><span class="nowrap">10:00 – 14:00</span> · <span class="nowrap">17:00 – 20:00</span></td></tr>
+              <tr data-days="0,1"><th scope="row">Domingo y lunes</th><td>Cerrado</td></tr>
+            </tbody>
+          </table>
+          <div class="contact reveal">
+            <a class="btn btn--ghost" data-wa href="https://wa.me/34600000000"><svg aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp</a>
+            <a class="contact__tel" data-tel href="tel:+34600000000"><span data-tel-text>600 000 000</span></a>
+          </div>
+        </div>
+        <div class="map reveal" data-map>
+          <div class="map__placeholder" data-map-placeholder>
+            <p class="mono">Mapa de OpenStreetMap</p>
+            <p>Para verlo necesitamos cargar contenido de un servicio externo.</p>
+            <button class="btn btn--ghost btn--small" type="button" data-map-load>Cargar mapa</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__grid">
+      <div class="site-footer__brand">
+        <p class="site-footer__logo">LAJA</p>
+        <p>Vinos de pizarra de Cañamero, en la D.O. Ribera del Guadiana.</p>
+        <p class="site-footer__moderation mono">Bebe con moderación. Prohibida la venta a menores de 18 años.</p>
+      </div>
+      <nav aria-label="Contacto">
+        <h2 class="mono">Bodega</h2>
+        <a href="#vinos">Comprar vino</a>
+        <a href="#enoturismo">Reservar visita</a>
+        <a data-wa href="https://wa.me/34600000000">WhatsApp</a>
+      </nav>
+      <nav aria-label="Legal">
+        <h2 class="mono">Legal</h2>
+        <a href="aviso-legal.html">Aviso legal</a>
+        <a href="privacidad.html">Política de privacidad</a>
+        <a href="cookies.html">Política de cookies</a>
+        <button class="link-button" type="button" data-open-cookies>Configurar cookies</button>
+      </nav>
+      <div class="site-footer__credit">
+        <h2 class="mono">Créditos</h2>
+        <p>Botellas 3D: <a href="https://polyhaven.com/a/wine_bottles_01" target="_blank" rel="noopener">Wine Bottles 01</a>, de Rico Cilliers y Jurita Burger en Poly Haven (CC0).</p>
+        <p>Negocio ficticio. Web diseñada y desarrollada por <a href="https://danielduranmoya-spec.github.io/">Daniel Durán</a>.</p>
+      </div>
+    </div>
+    <div class="wrap site-footer__bottom mono">
+      <p>© <span data-year>2026</span> Bodega LAJA · Concepto</p>
+      <a href="#inicio">Volver arriba ↑</a>
+    </div>
+  </footer>
+
+  <!-- Aviso de edad -->
+  <div class="age" role="dialog" aria-modal="true" aria-labelledby="age-title" aria-describedby="age-text" data-age hidden>
+    <div class="age__box">
+      <svg class="age__mark" aria-hidden="true"><use href="#i-laja"/></svg>
+      <p class="eyebrow">Bodega LAJA</p>
+      <h2 class="age__title" id="age-title">¿Tienes 18 años o más?</h2>
+      <p id="age-text">Esta web habla de vino y permite comprarlo. Por ley, solo puede verla quien sea mayor de edad.</p>
+      <div class="age__actions">
+        <button class="btn btn--accent" type="button" data-age-yes>Sí, entrar</button>
+        <button class="btn btn--ghost" type="button" data-age-no>No</button>
+      </div>
+      <p class="age__no" data-age-msg hidden>Vuelve cuando cumplas 18. Mientras tanto, la viña te espera.</p>
+    </div>
+  </div>
+
+  <div class="cookie-banner" role="region" aria-label="Aviso de cookies" data-cookie-banner hidden>
+    <p class="cookie-banner__title">Tu elección sobre contenido externo</p>
+    <p>No usamos cookies de publicidad ni de analítica. Si aceptas, cargamos el mapa de OpenStreetMap, que es un servicio de terceros. <a href="cookies.html">Más información</a></p>
+    <div class="cookie-banner__actions">
+      <button class="btn btn--cookie" type="button" data-consent="rejected">Rechazar</button>
+      <button class="btn btn--cookie" type="button" data-consent="accepted">Aceptar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
